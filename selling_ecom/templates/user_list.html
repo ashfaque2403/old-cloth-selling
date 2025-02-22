@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<style>
+    .user-box {
+        {% comment %} border: 1px solid #ffa500; /* Border color */ {% endcomment %}
+        border-radius: 1rem; /* Border radius to make it circular */
+        padding: 10px; /* Padding inside the user profile */
+        margin-bottom: 20px; /* Spacing between user profiles */
+        background-color: #ffa500; /* Light orange background color */
+        display: flex; /* Center align content */
+        width:300px;
+        align-items: center; /* Center align content */
+        justify-content: start; /* Center align content */
+        transition: background-color 0.3s ease; /* Smooth transition for background color change */
+    }
+    .user-box:hover {
+        background-color: #ffc966; /* Change background color on hover */
+    }
+    .user-box img {
+        width: 40px; /* Width of the profile picture */
+        height: 40px; /* Height of the profile picture */
+        border-radius: 50%; /* Border radius to make it circular */
+    }
+    .user-box span {
+        font-size: 18px; /* Font size of the username */
+        color: #fff;
+    }
+    .user-profile {
+        float: left; /* Align the user profile content to the left */
+        margin-left: 10px; /* Add some margin between the image and text */
+    }
+</style>
+
+<div class="container mt-5">
+    <h1>Users You've Messaged</h1>
+    <ul class="list-group">
+        {% for user in users %}
+        <div>
+            <p>{{ user.username }}</p>
+            {% if unread_messages.user.id %}
+                <span class="badge badge-warning">Unread Messages</span>
+            {% endif %}
+            <a href="{% url 'view_conversation' user.id %}">View Conversation</a>
+        </div>
+    {% endfor %}
+    
+    </ul>
+</div>
+<br>
+<br>
+<br>
+<br>
+{% endblock content %}

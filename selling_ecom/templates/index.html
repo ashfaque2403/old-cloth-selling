@@ -1,0 +1,458 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+	<!-- Slider -->
+	<section class="section-slide">
+		<div class="wrap-slick1">
+			<div class="slick1">
+				<div class="item-slick1" style="background-image: url({% static 'images/slide-01.jpg' %});">
+					<div class="container h-full">
+						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
+								<span class="ltext-101 cl2 respon2">
+									Women Collection 2018
+								</span>
+							</div>
+								
+							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
+								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+									NEW SEASON
+								</h2>
+							</div>
+								
+							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
+								<a href="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+									Shop Now
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="item-slick1" style="background-image: url({% static 'images/slide-02.jpg' %});">
+					<div class="container h-full">
+						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
+								<span class="ltext-101 cl2 respon2">
+									Men New-Season
+								</span>
+							</div>
+								
+							<div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn" data-delay="800">
+								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+									Jackets & Coats
+								</h2>
+							</div>
+								
+							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
+								<a href="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+									Shop Now
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="item-slick1" style="background-image: url({% static 'images/slide-03.jpg' %});">
+					<div class="container h-full">
+						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+							<div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
+								<span class="ltext-101 cl2 respon2">
+									Men Collection 2018
+								</span>
+							</div>
+								
+							<div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
+								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+									New arrivals
+								</h2>
+							</div>
+								
+							<div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
+								<a href="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+									Shop Now
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% if request.user.is_superuser %}
+
+
+<style>
+    .service-item {
+		text-align: center;
+		padding: 20px;
+		border-radius: 5px;
+		margin-bottom: 20px;
+		transition: background-color 0.3s ease, transform 0.3s ease;
+		position: relative; /* Needed for stretched-link */
+	  }
+	  .service-item:hover {
+		background-color: #ff8c00; /* Light yellow background on hover */
+		transform: scale(1.05); /* Slightly scale up on hover */
+	  }
+	  
+	  .service-icon {
+		font-size: 40px;
+		color: #ff8c00;
+		margin-bottom: 15px;
+	  }
+	  p {
+		color: #222222;
+	  }
+	  .service-title {
+		font-weight: bold;
+		font-size: 28px;
+		color: #ff8c00;
+		margin-bottom: 10px;
+	  }
+</style>
+
+
+ 
+  <!-- partial:partials/_horizontal-navbar.html -->
+ 
+  <div class="container mt-5">
+	<div class="row"> 
+	  <div class="col-12 title-all text-center mb-5">
+		<h1 class="font-weight-bold">Dashboard</h1>
+		<p>Consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+	  </div>
+	  <div class="col-md-4 mb-4">
+		<a href="{% url "blog" %}" class="service-item stretched-link">
+		  <div class="service-icon">
+			<i class="zmdi zmdi-image"></i>
+		  </div>
+		  <h5 class="service-title">Gallery</h5>
+		  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+		</a>
+	  </div>
+	  <div class="col-md-4 mb-4">
+		<a href="{% url "admin_farmer" %}" class="service-item stretched-link">
+		  <div class="service-icon">
+			{% comment %} <i class="fas fa-user-friends"></i> {% endcomment %}
+			<i class="zmdi zmdi-accounts"></i>
+		  </div>
+		  <h5 class="service-title">View Sellers</h5>
+		  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+		</a>
+	  </div>
+	  <div class="col-md-4 mb-4">
+		<a href="{% url "admin_consumer" %}" class="service-item stretched-link">
+		  <div class="service-icon">
+			<i class="zmdi zmdi-account"></i>
+		  </div>
+		  <h5 class="service-title">View Users</h5>
+		  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+		</a>
+	  </div>
+	  <div class="col-md-4 mb-4">
+		<a href="{% url "admin_product" %}" class="service-item stretched-link">
+		  <div class="service-icon">
+			<i class="zmdi zmdi-markunread-mailbox"></i>
+		  </div>
+		  <h5 class="service-title">View Product</h5>
+		  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+		</a>
+	  </div>
+	  <div class="col-md-4 mb-4">
+		<a href="{% url "admin_order" %}" class="service-item stretched-link">
+		  <div class="service-icon">
+			<i class="zmdi zmdi-truck"></i>
+		  </div>
+		  <h5 class="service-title">View Order</h5>
+		  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+		</a>
+	  </div>
+	  <div class="col-md-4 mb-4">
+		<a href="{% url "logout" %}" class="service-item stretched-link">
+		  <div class="service-icon">
+			<i class="zmdi zmdi-eject"></i>
+		  </div>
+		  <h5 class="service-title">Logout</h5>
+		  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+		</a>
+	  </div>
+	</div>
+</div>
+
+<br>
+<br>
+<br>
+
+
+
+
+{% else %}
+
+{% if request.user.is_farmer %}
+
+{% else %}
+	<!-- Banner -->
+	<div class="sec-banner bg0 p-t-80 p-b-50">
+		<div class="container">
+			<!-- Assuming this is part of a template with category links -->
+
+			<div class="row">
+				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+					<!-- Block1 -->
+					<div class="block1 wrap-pic-w">
+						<img src="{% static 'images/banner-01.jpg' %}" alt="IMG-BANNER">
+						<a href="{% url 'gencategory' 'women' %}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+							<div class="block1-txt-child1 flex-col-l">
+								<span class="block1-name ltext-102 trans-04 p-b-8">
+									Women
+								</span>
+								<span class="block1-info stext-102 trans-04">
+									Spring 2018
+								</span>
+							</div>
+							<div class="block1-txt-child2 p-b-4 trans-05">
+								<div class="block1-link stext-101 cl0 trans-09">
+									Shop Now
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+					<!-- Block1 -->
+					<div class="block1 wrap-pic-w">
+						<img src="{% static 'images/banner-02.jpg' %}" alt="IMG-BANNER">
+						<a href="{% url 'gencategory' 'men' %}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+							<div class="block1-txt-child1 flex-col-l">
+								<span class="block1-name ltext-102 trans-04 p-b-8">
+									Men
+								</span>
+								<span class="block1-info stext-102 trans-04">
+									Spring 2018
+								</span>
+							</div>
+							<div class="block1-txt-child2 p-b-4 trans-05">
+								<div class="block1-link stext-101 cl0 trans-09">
+									Shop Now
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+					<!-- Block1 -->
+					<div class="block1 wrap-pic-w">
+						<img src="{% static 'images/banner-03.jpg' %}" alt="IMG-BANNER">
+						<a href="{% url 'gencategory' 'accessories' %}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+							<div class="block1-txt-child1 flex-col-l">
+								<span class="block1-name ltext-102 trans-04 p-b-8">
+									Accessories
+								</span>
+								<span class="block1-info stext-102 trans-04">
+									New Trend
+								</span>
+							</div>
+							<div class="block1-txt-child2 p-b-4 trans-05">
+								<div class="block1-link stext-101 cl0 trans-09">
+									Shop Now
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+{% endif %}
+
+
+	<!-- Product -->
+	<section class="bg0 p-t-23 p-b-140">
+		<div class="container">
+			<div class="p-b-10">
+				<h3 class="ltext-103 cl5 text-center my-2">
+					{% if request.user.is_farmer %}
+					Your Products
+					{% else %}
+					Product Overview
+					{% endif %}
+				</h3>
+			</div>
+			{% if request.user.is_farmer %}
+			{% else %}
+			<div class="flex-w flex-sb-m p-b-52">
+				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+						All Products
+					</button>
+{% comment %} 
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
+						Women
+					</button>
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
+						Men
+					</button>
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
+						Bag
+					</button>
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
+						Shoes
+					</button>
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
+						Watches
+					</button> {% endcomment %}
+				</div>
+
+				<div class="flex-w flex-c-m m-tb-10">
+					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+						 Filter
+					</div>
+
+					<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
+						<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+						Search
+					</div>
+				</div>
+				
+				<!-- Search product -->
+				<div class="dis-none panel-search w-full p-t-10 p-b-15">
+					<div class="bor8 dis-flex p-l-15">
+						<form method="GET" class="flex-w w-full" action="{% url "product_shop" %}">
+							<button type="submit" class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+								<i class="zmdi zmdi-search"></i>
+							</button>
+							<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="search" name="search" placeholder="Search">
+						</form>
+					</div>
+				</div>
+
+				<!-- Filter -->
+				<!-- Filter -->
+				<div class="dis-none panel-filter w-full p-t-10">
+					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+						<div class="filter-col1 p-r-15 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Sort By
+							</div>
+						
+							<form action="" method="GET">
+								<select name="sorted" id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD" style="flex-grow: 1;" style="width: 100%;">
+									<option data-display="Select">Sort by</option>
+									<option value="2">High Price → Low Price</option>
+									<option value="3">Low Price → High Price</option>
+								</select>
+								<button type="submit" class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4" style="margin-top: 10px;">Filter</button>
+							</form>
+						</div>
+						
+
+						<div class="filter-col2 p-r-15 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Materials
+							</div>
+
+							<form action="" method="GET">
+								<ul>
+									<li class="p-b-6">
+										<select name="material" id="category-select" class="selectpicker show-tick form-control" data-placeholder="Choose a category" style="width: 100%;">
+											{% comment %} <option data-display="Select">Choose category</option> {% endcomment %}
+											{% for mat in material_obj %}
+											<option value="{{ mat.name }}" {% if mat.name in materials %}selected{% endif %}>
+												{{ mat.name }}
+											</option>
+											{% endfor %}
+										</select>
+									</li>
+								</ul>
+								<button type="submit" class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4" style="margin-top: 10px;">Filter</button>
+							</form>
+						</div>
+
+						
+						<div class="filter-col3 p-r-15 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Category
+							</div>
+						
+							<form action="" method="GET">
+								<ul>
+									<li class="p-b-6">
+										<select name="category" id="category-select" class="selectpicker show-tick form-control" data-placeholder="Choose a category" style="width: 100%;">
+											{% comment %} <option data-display="Select">Choose category</option> {% endcomment %}
+											{% for category_objs in category_obj %}
+											<option value="{{ category_objs.name }}" {% if category_objs.name in categories %}selected{% endif %}>
+												{{ category_objs.name }}
+											</option>
+											{% endfor %}
+										</select>
+									</li>
+								</ul>
+								<button type="submit" class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4" style="margin-top: 10px;">Filter</button>
+							</form>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			{% endif %}
+			<div class="row isotope-grid">
+				{% for item in product %}
+					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+						<div class="block2">
+							<div class="block2-pic hov-img0" >
+								<img src="{{ item.image.url }}" alt="IMG-PRODUCT">
+								<a href="{% url "product_detail" item.id %}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
+									Quick View
+								</a>
+								
+							</div>
+							<div class="block2-txt flex-w flex-t p-t-14">
+								<div class="block2-txt-child1 flex-col-l">
+									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										{{ item.name }}
+									</a>
+									<span class="stext-105 cl3">
+										${{ item.price }}
+									</span>
+									{% if item.stock_quantity > 0 %}
+									<p class="text-success">In Stock: {{ item.stock_quantity }}</p>
+								{% else %}
+									<p class="text-danger">Out of Stock</p>
+								{% endif %}
+								</div>
+								<div class="block2-txt-child2 flex-r p-t-3">
+									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+										<img class="icon-heart1 dis-block trans-04" src="{% static 'images/icons/icon-heart-01.png' %}" alt="ICON">
+										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="{% static 'images/icons/icon-heart-02.png' %}" alt="ICON">
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+
+				
+			</div>
+
+			<!-- Load more -->
+			
+		</div>
+	</section>
+
+	{% endif %}
+
+	{% endblock content %}

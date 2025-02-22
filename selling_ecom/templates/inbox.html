@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inbox</title>
+</head>
+<body>
+    <h1>Inbox</h1>
+    <ul>
+        {% for message in messages %}
+            <li>{{ message.timestamp }} - <strong>{{ message.sender }}</strong>: {{ message.content }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'send_message' %}">Send a message</a>
+</body>
+</html>

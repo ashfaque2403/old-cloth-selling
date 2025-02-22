@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<style>
+	form.d-flex.align-items-center.w-100 {
+		gap: 10px;
+	}
+	
+	form.d-flex .form-select {
+		width: auto;
+		flex: 1;
+	}
+	
+	form.d-flex .btn {
+		white-space: nowrap;
+	}
+</style>
+{% include "messages.html" %}
+	<!-- breadcrumb -->
+	<div class="container">
+		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+				Home
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
+
+			<span class="stext-109 cl4">
+				Orders
+			</span>
+		</div>
+	</div>
+		<br>
+		<br>
+
+	<!-- Shoping Cart -->
+	{% comment %} <form class="bg0 p-t-75 p-b-85"> {% endcomment %}
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 col-xl-12 m-lr-auto m-b-50">
+					<div class="m-l-25 m-r--38 m-lr-0-xl">
+						<div class="wrap-table-shopping-cart">
+							<table class="table-shopping-cart">
+								{% include "messages.html" %}
+							
+								<tr class="table_head">
+									<th class="column-1">Image</th>
+									<th class="column-2">Product</th>
+									<th class="column-3">Price</th>
+									<th class="column-4">Quantity</th>
+									{% if request.user.is_farmer %}
+									<th class="column-5">Customer</th>
+									<th class="column-5">Address</th>
+									{% endif %}
+									<th class="column-5">Total</th>
+									<th class="column-5">Status</th>
+									{% if request.user.is_farmer %}
+									<th class="column-5">Update Status</th>
+									{% endif %}
+								</tr>
+							
+								{% if request.user.is_farmer %}
+								{% for order_item in seller_orders %}
+								<tr class="table_row" data-product-id="{{ order_item.product.id }}">
+									<td class="column-1">
+										<div class="how-itemcart1">
+											<img src="{{order_item.product.image}}" alt="IMG">
+										</div>
+									</td>
+									<td class="column-2">{{ order_item.product.name }}</td>
+									<td class="column-3">
+										<p>$ {{order_item.price}}</p>
+									</td>
+									<td class="column-4">
+										<input class="bg-light w-50 rounded p-2 px-3" type="text" readonly name="num-product1" value="{{ order_item.quantity }}">
+									</td>
+									<td class="column-5">
+										<p>{{order_item.order.user}} </p>
+									</td>
+									<td class="column-5">
+										<p>{{ order_item.order.address }}<br>- {{order_item.order.zipcode}}</p>
+									</td>
+									<td class="column-5">
+										<p>$ {{ order_item.price }}</p>
+									</td>
+									<td class="column-5">
+										{% if order_item.status == 'processing' %}
+										<button class="btn btn-light">Processing</button>
+										{% elif order_item.status == 'packing' %}
+										<button class="btn btn-warning">Packing</button>
+										{% elif order_item.status == 'shipping' %}
+										<button class="btn btn-primary">Shipping</button>
+										{% elif order_item.status == 'delivered' %}
+										<button class="btn btn-success">Delivered</button>
+										{% endif %}
+									</td>
+									<td class="column-5">
+										<form method="POST" class="d-flex align-items-center w-100">
+											{% csrf_token %}
+											<input type="hidden" name="order_id" value="{{ order_item.id }}">
+											<select name="action" class="form-select me-2  size-116 ">
+												{% for status, status_display in order_item.STATUS_CHOICES %}
+												<option value="{{ status }}" {% if order_item.status == status %}selected{% endif %}>
+													{{ status_display }}
+												</option>
+												{% endfor %}
+											</select>
+											<button type="submit" class="btn btn-info text-light">Done</button>
+										</form>
+										
+									</td>
+								</tr>
+								{% empty %}
+								<tr>
+									<td colspan="9">
+										<h2 class="h5 text-black">No items</h2>
+									</td>
+								</tr>
+								{% endfor %}
+								{% else %}
+								{% for order_item in buyer_orders %}
+								<tr class="table_row" data-product-id="{{ order_item.product.id }}">
+									<td class="column-1">
+										<div class="how-itemcart1">
+											<img src="{{order_item.product.image}}" alt="IMG">
+										</div>
+									</td>
+									<td class="column-2">{{ order_item.product.name }}</td>
+									<td class="column-3">$ {{ order_item.product.price }}</td>
+									<td class="column-4">
+										<input class="bg-light w-50 rounded p-2 px-3" type="text" readonly name="num-product1" value="{{ order_item.quantity }}">
+									</td>
+									<td class="column-5">${{ order_item.price }}</td>
+									<td class="column-5">
+										{% if order_item.status == 'processing' %}
+										<button class="btn btn-light">Processing</button>
+										{% elif order_item.status == 'packing' %}
+										<button class="btn btn-warning">Packing</button>
+										{% elif order_item.status == 'shipping' %}
+										<button class="btn btn-primary">Shipping</button>
+										{% elif order_item.status == 'delivered' %}
+										<button class="btn btn-success">Delivered</button>
+										{% endif %}
+									</td>
+								</tr>
+								{% empty %}
+								<tr>
+									<td colspan="6">
+										<h2 class="h5 text-black">No items</h2>
+									</td>
+								</tr>
+								{% endfor %}
+								{% endif %}
+							</table>
+							
+						</div>
+			
+						
+					</div>
+				</div>
+			
+				
+			</div>
+			
+			
+		</div>
+	{% comment %} </form> {% endcomment %}
+		
+	
+	
+{% endblock %}

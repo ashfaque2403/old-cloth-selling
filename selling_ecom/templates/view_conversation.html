@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .chat-container {
+        border: 1px solid #ccc; /* Border around the chat container */
+        padding: 20px; /* Padding inside the chat container */
+        border-radius: 10px; /* Rounded corners for the chat container */
+        background-color: #f9f9f9; /* Background color for the chat container */
+    }
+    .chat-message {
+        margin-bottom: 10px; /* Spacing between messages */
+        padding: 10px; /* Padding inside each message */
+        border-radius: 10px; /* Rounded corners for messages */
+    }
+    .chat-message.sender {
+        background-color: #ffa500; /* Background color for sender messages */
+        color: white; /* Text color for sender messages */
+        text-align: right; /* Align sender messages to the right */
+    }
+    .chat-message.recipient {
+        background-color: #e0e0e0; /* Background color for recipient messages */
+        color: black; /* Text color for recipient messages */
+        text-align: left; /* Align recipient messages to the left */
+    }
+    .chat-message em {
+        display: block; /* Display timestamp as a block element */
+        font-size: 0.8em; /* Smaller font size for timestamp */
+        margin-top: 5px; /* Space above the timestamp */
+    }
+    .chat-form textarea {
+        width: 100%; /* Full width for the textarea */
+        padding: 10px; /* Padding inside the textarea */
+        border-radius: 10px; /* Rounded corners for the textarea */
+        border: 1px solid #ccc; /* Border for the textarea */
+    }
+    .chat-form button {
+        background-color: #ffa500; /* Background color for the button */
+        color: white; /* Text color for the button */
+        border: none; /* Remove border from the button */
+        padding: 10px 20px; /* Padding inside the button */
+        border-radius: 10px; /* Rounded corners for the button */
+        cursor: pointer; /* Pointer cursor on hover */
+        margin-top: 10px; /* Space above the button */
+    }
+</style>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+    <h1 class="mb-4">Conversation with {{ recipient.username }}</h1>
+    <div class="chat-container">
+        <ul class="list-unstyled">
+            {% for message in messages %}
+                <li class="chat-message {% if message.sender == request.user %}sender{% else %}recipient{% endif %}">
+                    <strong>{{ message.sender.username }}:</strong> {{ message.content }}
+                    <em>{{ message.timestamp }}</em>
+                </li>
+            {% endfor %}
+        </ul>
+        <form method="post" action="{% url 'send_message' recipient.id %}" class="chat-form">
+            {% csrf_token %}
+            <textarea name="content" rows="3" placeholder="Type your message..."></textarea>
+            <button type="submit">Send</button>
+        </form>
+        <a href="{% url 'user_list' %}" class="btn btn-secondary mt-3">Back to user list</a>
+    </div>
+</div>
+{% endblock %}

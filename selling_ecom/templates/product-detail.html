@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<!-- Title page -->
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{% static 'images/bg-01.jpg' %}');">
+		<h2 class="ltext-105 cl0 txt-center">
+			Product Detail
+		</h2>
+	</section>	
+
+{% include "messages.html" %}
+
+	<!-- breadcrumb -->
+	
+		
+
+	<!-- Product Detail -->
+	<section class="sec-product-detail bg0 p-t-65 p-b-60">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-lg-7 p-b-30">
+					<div class="p-l-25 p-r-30 p-lr-0-lg">
+						<div class="wrap-slick3 flex-sb flex-w">
+							<div class="wrap-slick3-dots"></div>
+							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+			
+							<div class="slick3 gallery-lb">
+								<div class="item-slick3" data-thumb="{{ product.image.url }}">
+									<div class="wrap-pic-w pos-relative">
+										<img src="{{ product.image.url }}" alt="IMG-PRODUCT">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ product.image.url }}">
+											<i class="fa fa-expand"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-6 col-lg-5 p-b-30">
+					<div class="p-r-50 p-t-5 p-lr-0-lg">
+						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
+							{{product.name}}
+							<br>
+							{% if product.stock_quantity > 0 %}
+									<span class="text-success small">In Stock: {{ product.stock_quantity }}</span>
+								{% else %}
+									<span class="text-danger small">Out of Stock</span>
+									{% comment %} <a class="btn btn-success" href="{% url "product" %}">Add Product</a> {% endcomment %}
+								{% endif %}
+						</h4>
+
+						<span class="mtext-106 cl2">
+							${{product.price}}
+						</span>
+
+						<p class="stext-102 cl3 p-t-23">
+							{{product.description}}		
+										</p>
+						
+						<!--  -->
+						<div class="p-t-33">
+							<div class="flex-w flex-r-m p-b-10">
+								<div class="size-203 flex-c-m respon6">
+									Size
+								</div>
+
+								<div class="size-204 respon6-next">
+									<div class="rs1-select2 bor8 bg0">
+										<select class="js-select2" name="time">
+											<option>{{product.size}}</option>
+											
+										</select>
+										<div class="dropDownSelect2"></div>
+									</div>
+								</div>
+							</div>
+
+							<div class="flex-w flex-r-m p-b-10">
+								<div class="size-203 flex-c-m respon6">
+									Material
+								</div>
+
+								<div class="size-204 respon6-next">
+									<div class="rs1-select2 bor8 bg0">
+										<select class="js-select2" name="time">
+											<option>{{product.material}}</option>
+											
+										</select>
+										<div class="dropDownSelect2"></div>
+									</div>
+								</div>
+							</div>
+
+							<div class="flex-w flex-r-m p-b-10">
+								<div class="size-204 flex-w flex-m respon6-next">
+									<form action="{% url 'add' product.id %}" method="POST">
+										{% csrf_token %}
+										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
+											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-minus"></i>
+											</div>
+						
+											<input class="mtext-104 cl3 txt-center num-product" type="number" name="quantity" value="1" min="1" step="1">
+						
+											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-plus"></i>
+											</div>
+										</div>
+										{% if request.user.is_farmer %}
+											
+										{% else %}
+										<button type="submit" class="d-flex  flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+			
+											Add to cart
+										
+										</button>
+										{% endif %}
+										
+									</form>
+									{% if request.user.is_farmer %}
+										{% else %}
+										<a href="{% url 'send_message' product.user.id %}" class=" p-2 my-2 d-flex flex-c-m stext-101 cl0 size-81 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+											Chat with Designer
+										</a>
+										{% endif %}
+								</div>
+							</div> 	
+						</div>
+
+					
+					</div>
+				</div>
+
+				
+			</div>
+			
+
+		</div>
+
+		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
+			<span class="stext-107 cl6 p-lr-25">
+				SKU: JAK-01
+			</span>
+
+			<span class="stext-107 cl6 p-lr-25">
+				Categories: Jacket, Men
+			</span>
+		</div>
+	</section>
+
+
+
+		
+{% endblock %}

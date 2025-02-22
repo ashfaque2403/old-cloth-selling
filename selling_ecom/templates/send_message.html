@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .chat-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+    }
+    .chat-box {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        max-width: 400px;
+        width: 100%;
+    }
+    .chat-form {
+        margin-top: 20px;
+    }
+    .chat-input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    .chat-button {
+        background-color: #FFA500; /* Orange color */
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        float: right;
+    }
+    .chat-button:hover {
+        background-color: #FF8C00; /* Darker orange color on hover */
+    }
+    .chat-link {
+        color: blue;
+        text-decoration: none;
+        margin-top: 10px;
+        display: inline-block;
+    }
+</style>
+<div class="chat-container">
+    <div class="chat-box">
+        <h1>Send Message to {{ recipient.username }}</h1>
+        <form method="post" class="chat-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="chat-button mt-3">Send</button>
+        </form>
+        <a href="{% url 'user_list' %}" class="chat-link my-4">Back to user list</a>
+    </div>
+</div>
+{% endblock %}
